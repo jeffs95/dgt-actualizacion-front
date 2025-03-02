@@ -4,19 +4,14 @@ import Label from "../form/Label";
 import Input from "../form/input/InputField";
 import Checkbox from "../form/input/Checkbox";
 import Button from "../ui/button/Button";
-import { useNavigate } from "react-router-dom";
-// @ts-ignore
-import { registerUser } from "../../services/Auth/Register.js";
 
-export default function SignUpForm() {
+export default function UserData() {
   const [isChecked, setIsChecked] = useState(false);
-  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     nit: "",
     email: "",
     password: "",
   });
-  const navigate = useNavigate();
 
   const handleInputChange = (e: { target: { name: any; value: any } }) => {
     const { name, value } = e.target;
@@ -26,50 +21,11 @@ export default function SignUpForm() {
     }));
   };
 
-  const handleRegister = async (e: { preventDefault: () => void }) => {
+  const handleRegister = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    if (!formData.nit || !formData.password) {
-      setError("Por favor, ingresa tu NIT y contraseña.");
-      return;
-    }
-
-    const email = formData.email;
-    const password = formData.password;
-
-    try {
-      const payload = { nit: formData.nit.trim(), email, password };
-      const response = await registerUser(payload);
-      console.log("[RESPONSE REGISTER:] ", response);
-
-      navigate("/blank");
-    } catch (err) {
-      console.error("Error al iniciar sesión:", err);
-      setError("Error al iniciar sesión. Verifica tus credenciales.");
-    }
+    console.log(formData);
+    console.log("Términos y Condiciones aceptados:", isChecked);
   };
-
-  // const handleClick = async () => {
-  //   if (!formData.nit || !formData.password) {
-  //     setError("Por favor, ingresa tu NIT y contraseña.");
-  //     return;
-  //   }
-
-  //   const email = formData.email;
-  //   const password = formData.password;
-
-  //   try {
-  //     const payload = { nit: formData.nit.trim(), email, password };
-  //     const response = await registerUser(payload);
-  //     console.log('[RESPONSE REGISTER:] ', response);
-
-  //     navigate("/blank");
-  //   } catch (err) {
-  //     console.error("Error al iniciar sesión:", err);
-  //     setError("Error al iniciar sesión. Verifica tus credenciales.");
-  //   }
-
-  //   // navigate("/userdata");
-  // };
 
   return (
     <div className="flex items-center justify-center min-h-screen dark:bg-gray-900">
@@ -129,8 +85,6 @@ export default function SignUpForm() {
               </div>
             </div>
 
-            {error && <p className="text-red-500 text-sm">{error}</p>}
-
             <div className="col-span-2 flex items-center gap-2">
               <Checkbox
                 className="w-5 h-5"
@@ -146,7 +100,6 @@ export default function SignUpForm() {
 
             <div className="col-span-2">
               <Button
-                type="submit"
                 className="w-full bg-green-600 hover:bg-green-700 text-white"
               >
                 Registrarse
