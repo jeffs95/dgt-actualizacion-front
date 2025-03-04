@@ -17,19 +17,10 @@ export default function UserDropdown() {
 
   function handleLogout() {
     try {
-      // const authData = reactLocalStorage.getObject("auth");
-  
-      // if (!authData || Object.keys(authData).length === 0) {
-      //   console.warn("No hay datos de autenticación almacenados.");
-      //   return;
-      // }
-  
-      // console.log("User ID:", authData);
-  
-      reactLocalStorage.remove("auth");
+      reactLocalStorage.clear();
       navigate("/signin");
     } catch (error) {
-      console.error("[ERROR]>", error);
+      console.error("[ERROR LOGOUT]>", error);
     }
   }
   

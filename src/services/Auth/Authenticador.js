@@ -1,6 +1,16 @@
+import { reactLocalStorage } from 'reactjs-localstorage';
 import axiosInstance from '../../axiosConfig/axios';
 
-export const postPersonaDireccion = async (id) => {
+export const loginUser = async ({ nit, password }) => {
+    try {
+        const response = await axiosInstance.post('/api/authenticate', { nit, password });
+        return response.data;
+    } catch (error) {
+        throw new Error('Credenciales inválidas');
+    }
+};
+
+export const logout = async (id) => {
     try {        
         const storedData = reactLocalStorage.getObject('var');
         const accessToken = storedData.access_token;
@@ -10,14 +20,14 @@ export const postPersonaDireccion = async (id) => {
             },
         };
 
-        const response = await axiosInstance.post('/api/persona_direccion', {id}, config);
+        const response = await axiosInstance.post('/api/logout', {id}, config);
         return response.data;
     } catch (error) {
         throw new Error('No se completo la operación');
     }
 };
 
-export const getPersonaDireccion = async (id) => {
+export const postUsuario = async (id) => {
     try {        
         const storedData = reactLocalStorage.getObject('var');
         const accessToken = storedData.access_token;
@@ -27,14 +37,14 @@ export const getPersonaDireccion = async (id) => {
             },
         };
 
-        const response = await axiosInstance.get('/api/persona_direccion', {id}, config);
+        const response = await axiosInstance.post('/api/usuario', {id}, config);
         return response.data;
     } catch (error) {
         throw new Error('No se completo la operación');
     }
 };
 
-export const getByIdPersonaDireccion = async (id) => {
+export const getUsuario = async (id) => {
     try {        
         const storedData = reactLocalStorage.getObject('var');
         const accessToken = storedData.access_token;
@@ -44,14 +54,14 @@ export const getByIdPersonaDireccion = async (id) => {
             },
         };
 
-        const response = await axiosInstance.get('/api/persona_direccion', {id}, config);
+        const response = await axiosInstance.get('/api/usuario', {id}, config);
         return response.data;
     } catch (error) {
         throw new Error('No se completo la operación');
     }
 };
 
-export const putPersonaDireccion = async (id) => {
+export const getByIdUsuario = async (id) => {
     try {        
         const storedData = reactLocalStorage.getObject('var');
         const accessToken = storedData.access_token;
@@ -61,14 +71,14 @@ export const putPersonaDireccion = async (id) => {
             },
         };
 
-        const response = await axiosInstance.put('/api/persona_direccion', {id}, config);
+        const response = await axiosInstance.get('/api/usuario', {id}, config);
         return response.data;
     } catch (error) {
         throw new Error('No se completo la operación');
     }
 };
 
-export const deletePersonaDireccion = async (id) => {
+export const putUsuario = async (id) => {
     try {        
         const storedData = reactLocalStorage.getObject('var');
         const accessToken = storedData.access_token;
@@ -78,9 +88,27 @@ export const deletePersonaDireccion = async (id) => {
             },
         };
 
-        const response = await axiosInstance.delete('/api/persona_direccion', {id}, config);
+        const response = await axiosInstance.put('/api/usuario', {id}, config);
         return response.data;
     } catch (error) {
         throw new Error('No se completo la operación');
     }
 };
+
+export const deleteUsuario = async (id) => {
+    try {        
+        const storedData = reactLocalStorage.getObject('var');
+        const accessToken = storedData.access_token;
+        const config = {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        };
+
+        const response = await axiosInstance.delete('/api/usuario', {id}, config);
+        return response.data;
+    } catch (error) {
+        throw new Error('No se completo la operación');
+    }
+};
+

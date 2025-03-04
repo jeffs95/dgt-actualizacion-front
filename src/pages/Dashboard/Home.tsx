@@ -1,10 +1,9 @@
-import EcommerceMetrics from "../../components/ecommerce/EcommerceMetrics";
-import MonthlySalesChart from "../../components/ecommerce/MonthlySalesChart";
-import StatisticsChart from "../../components/ecommerce/StatisticsChart";
-import MonthlyTarget from "../../components/ecommerce/MonthlyTarget";
-import RecentOrders from "../../components/ecommerce/RecentOrders";
-import DemographicCard from "../../components/ecommerce/DemographicCard";
 import PageMeta from "../../components/common/PageMeta";
+import ComponentCard from "../../components/common/ComponentCard";
+import Table from "../../components/tables/Persona/Table";
+import Email from "../../components/tables/PersonaEmail/Table";
+import Telefono from "../../components/tables/PersonaTelefono/Table";
+import PageBreadcrumb from "../../components/common/PageBreadCrumb";
 
 export default function Home() {
   return (
@@ -13,28 +12,31 @@ export default function Home() {
         title="DGT-ACTUALIZACION"
         description="Proyecto actualizacion front"
       />
-      <div className="grid grid-cols-12 gap-4 md:gap-6">
-        <div className="col-span-12 space-y-6 xl:col-span-7">
-          <EcommerceMetrics />
+      <PageBreadcrumb pageTitle="Direcciones" />
+      <div className="space-y-6">
+        <ComponentCard title={""}>
+          <Table />
+        </ComponentCard>
+      </div>
 
-          <MonthlySalesChart />
-        </div>
+      <PageBreadcrumb pageTitle="Direcciones Electronicas" />
+      <div className="space-y-6">
+        <ComponentCard title={""}>
+          <Email />
+        </ComponentCard>
+      </div>
 
-        <div className="col-span-12 xl:col-span-5">
-          <MonthlyTarget />
-        </div>
+      <PageBreadcrumb pageTitle="Telefonos" />
+      <div className="space-y-6">
+        <ComponentCard title={""}>
+          <Telefono />
+        </ComponentCard>
+      </div>
 
-        <div className="col-span-12">
-          <StatisticsChart />
-        </div>
-
-        <div className="col-span-12 xl:col-span-5">
-          <DemographicCard />
-        </div>
-
-        <div className="col-span-12 xl:col-span-7">
-          <RecentOrders />
-        </div>
+      <PageBreadcrumb pageTitle="Documentos" />
+      <div className="space-y-6">
+        <ComponentCard title={""} children={undefined}>
+        </ComponentCard>
       </div>
     </>
   );

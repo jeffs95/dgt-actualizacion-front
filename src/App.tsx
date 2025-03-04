@@ -2,8 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router";
 import SignIn from "./pages/AuthPages/SignIn";
 import SignUp from "./pages/AuthPages/SignUp";
 import UserData from "./pages/AuthPages/UserData";
+import CompleteProfile from "./pages/AuthPages/CompleteProfile";
 import NotFound from "./pages/OtherPage/NotFound";
-import UserProfiles from "./pages/UserProfiles";
 import Videos from "./pages/UiElements/Videos";
 import Images from "./pages/UiElements/Images";
 import Alerts from "./pages/UiElements/Alerts";
@@ -19,6 +19,9 @@ import Blank from "./pages/Blank";
 import AppLayout from "./layout/AppLayout";
 import { ScrollToTop } from "./components/common/ScrollToTop";
 import Home from "./pages/Dashboard/Home";
+import Vehiculo from "./pages/Vehiculo/Vehiculo";
+import Licencia from "./pages/Licencia/Licencia";
+import TarjetaOperacion from "./pages/TarjetaOperacion/tarjetaOperacion";
 
 export default function App() {
   return (
@@ -31,7 +34,6 @@ export default function App() {
             <Route index path="/" element={<Home />} />
 
             {/* Others Page */}
-            <Route path="/profile" element={<UserProfiles />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/blank" element={<Blank />} />
 
@@ -52,12 +54,24 @@ export default function App() {
             {/* Charts */}
             <Route path="/line-chart" element={<LineChart />} />
             <Route path="/bar-chart" element={<BarChart />} />
+
+            {/* Vehiculo */}
+            <Route path="/vechiculo" element={<Vehiculo />} />
+
+            {/* Licencia */}
+            <Route path="/licencia" element={<Licencia />} />
+
+            {/* Licencia */}
+            <Route path="/tarjetaOperacion" element={<TarjetaOperacion />} />
+
           </Route>
 
           {/* Auth Layout */}
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/userdata" element={<UserData />} />
+          <Route path="/completar-perfil" element={<CompleteProfile />} />
+
           {/* Fallback Route */}
           <Route path="*" element={<NotFound />} />
         </Routes>
